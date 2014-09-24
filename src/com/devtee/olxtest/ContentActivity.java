@@ -3,6 +3,8 @@ package com.devtee.olxtest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Window;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -16,6 +18,7 @@ public class ContentActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_content);
 		
 		webView = (WebView) findViewById(R.id.webView);
@@ -28,7 +31,19 @@ public class ContentActivity extends Activity{
 		
 		WebSettings webSettings = webView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
+		webView.setWebChromeClient(new CustomWebChromeClient());
 		webView.loadUrl(url);
+		
 	}
 	
+	private class CustomWebChromeClient extends WebChromeClient {
+
+		@Override
+		public void onProgressChanged(WebView view, int newProgress) {
+			super.onProgressChanged(view, newProgress);
+			
+			ContentActivity.this.setProgress(newProgress * 100);
+		}
+		
+	}
 }
