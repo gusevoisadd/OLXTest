@@ -44,7 +44,11 @@ public class Items implements Serializable{
 			score = json.getString(KEY_SCORE);
 			last_activity_date = json.getString(KEY_LAST_ACTIVITY_DATE);
 			creation_date = json.getString(KEY_CREATION_DATE);
-			last_edit_date = json.getString(KEY_LAST_EDIT_DATE);
+			
+			if(json.has(KEY_LAST_EDIT_DATE)){
+				last_edit_date = json.getString(KEY_LAST_EDIT_DATE);				
+			}
+
 			question_id = json.getString(KEY_QUESTION_ID);
 			link = json.getString(KEY_LINK);
 			title = json.getString(KEY_TITLE);

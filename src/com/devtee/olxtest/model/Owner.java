@@ -23,7 +23,11 @@ public class Owner implements Serializable{
 			reputation = json.getString(KEY_REPUTATION);
 			user_id = json.getString(KEY_USER_ID);
 			user_type = json.getString(KEY_USER_TYPE);
-			accept_rate = json.getString(KEY_ACCEPT_RATE);
+			
+			if(json.has(KEY_ACCEPT_RATE)){
+				accept_rate = json.getString(KEY_ACCEPT_RATE);
+			}
+		
 			profile_image = json.getString(KEY_PROFILE_IMAGE);
 			display_name = json.getString(KEY_DISPLAY_NAME);
 			link = json.getString(KEY_LINK);
